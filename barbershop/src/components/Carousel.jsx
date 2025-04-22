@@ -3,6 +3,7 @@ import logo from "../logo.svg";
 export default function carousel() {
   return (
     <section class="carousel slide w-50" id="home-section">
+        <div class="d-flex justify-content-center align-items-center">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -53,6 +54,7 @@ export default function carousel() {
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
+        </div>
 	</section>
   )
 }
