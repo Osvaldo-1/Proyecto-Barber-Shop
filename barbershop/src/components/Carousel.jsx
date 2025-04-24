@@ -1,4 +1,3 @@
-import logo from "../logo.svg";
 
 export default function carousel() {
     const images = [
@@ -6,28 +5,25 @@ export default function carousel() {
             id: 0,
             class: "carousel-item active",
             state: "active",
-            texto: "hola que tal",
-            img: logo 
+            img: "/images/barbershop_image_1.jpg" 
         }, 
         {
             id: 1,
             class: "carousel-item",
             state: "",
-            texto: "esto es una prueba",
-            img: logo
+            img: "/images/barbershop_image_2.jpg"
         },
         {
             id: 2,
             class: "carousel-item",
             state: "",
-            texto: "para mostrar datos dinámicos",
-            img: logo
+            img: "/images/barbershop_image_3.jpg"
         }
     ]
 
   return (
-    <div class="d-flex justify-content-center align-items-center mt-4">
-        <section class="carousel slide" style={{width: "600px"}} id="home-section">
+    <div class="d-flex justify-content-center align-items-center my-4 w-full">
+        <section class="carousel slide w-75 mx-auto"  id="home-section" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 {images.map((image) => (
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to={image.id} class={image.state} aria-current="true" aria-label={`Slide ${image.id}`}></button>
@@ -38,9 +34,6 @@ export default function carousel() {
                 {images.map((image) => (
                     <div class={image.class} key={image.id}>
                         <img class="d-block w-100" src={image.img} alt="First slide" />
-                        <div class="carousel-caption d-none d-md-block">
-                            <h3>{image.texto}</h3>
-                        </div>
                     </div>
                 ))}
             </div>

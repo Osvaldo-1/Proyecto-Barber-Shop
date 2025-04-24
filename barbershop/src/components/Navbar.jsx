@@ -1,30 +1,37 @@
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
 
   const opciones = [
     {
       id: 0,
-      nombre: "Home"
+      nombre: "Home",
+      link: "/"
     },
     {
       id: 1,
-      nombre: "About"
+      nombre: "About",
+      link: "about"
     },
     {
       id: 2,
-      nombre: "Services"
+      nombre: "Services",
+      link: "services"
     },
     {
       id: 3,
-      nombre: "Galery"
+      nombre: "Galery",
+      link: "gallery"
     },
     {
       id: 4,
-      nombre: "Pricing"
+      nombre: "Pricing",
+      link: "pricing"
     },
     {
       id: 5,
-      nombre: "Contact"
+      nombre: "Contact",
+      link: "contact"
     }
   ]
 
@@ -34,12 +41,12 @@ export default function Navbar() {
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand text-light" href="/">BarberShop</a>
+            <Link to="/" class="navbar-brand text-light">BarberShop</Link>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   {opciones.map((opcion) => (
                     <li class="nav-list" key={opcion.id}>
-                      <a class="nav-link active text-light" href="#home">{opcion.nombre}</a>
+                      <Link to={opcion.link} class="nav-link active text-light">{opcion.nombre}</Link>
                     </li>
                   ))}
                 </ul>
