@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import '../pages/Pages.css';
+import Btn from "./Btn";
+
 
 export default function Navbar() {
 
@@ -21,7 +22,7 @@ export default function Navbar() {
     },
     {
       id: 3,
-      nombre: "Galery",
+      nombre: "Gallery",
       link: "gallery"
     },
     {
@@ -37,23 +38,23 @@ export default function Navbar() {
   ]
 
   return (
-    <nav class="navbar navbar-expand-lg navs">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+    <nav className="navbar navbar-expand-lg navs">
+        <div className="container-fluid px-lg-5">
+            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
             </button>
-            <Link to="/" class="navbar-brand text-light"><img src="/images/barbershop_logo.png" alt="logo" /></Link>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <Link to="/" className="navbar-brand text-light"><img src="/images/barbershop_logo.png" alt="logo" draggable="false" /></Link>
+            <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                   {opciones.map((opcion) => (
-                    <li class="nav-list" key={opcion.id}>
-                      <Link to={opcion.link} class="nav-link active text-light">{opcion.nombre}</Link>
+                    <li className="nav-list" key={opcion.id}>
+                      <Link to={opcion.link} className="nav-link active text-light"><span className="status">{opcion.nombre}</span></Link>
                     </li>
                   ))}
                 </ul>
             </div>
-            <span class="navbar-text">
-              <button type="button" class="btn btn-secondary btns">Make Appointment</button>
+            <span className="navbar-text">
+              <Btn text="Make Appointment" classStyle="btn-color"/>
             </span>
         </div>
     </nav>

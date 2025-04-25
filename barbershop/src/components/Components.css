@@ -1,0 +1,19 @@
+.navs {
+    background-color: #222227;
+}
+
+.btn-color {
+    background-color: #897666;
+    color: #fcf9f5;
+    font-weight: bold;
+    border: none;
+}
+
+.btn-color:hover {
+    background-color: #9e8a78;
+    color: #fcf9f5;
+}
+
+.status:hover {
+    color: #B8A697;
+}
