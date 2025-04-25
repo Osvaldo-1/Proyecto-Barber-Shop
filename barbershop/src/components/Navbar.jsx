@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import '../pages/Pages.css';
 
 export default function Navbar() {
 
@@ -36,12 +37,12 @@ export default function Navbar() {
   ]
 
   return (
-    <nav class="navbar navbar-expand-lg bg-dark">
+    <nav class="navbar navbar-expand-lg navs">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
-            <Link to="/" class="navbar-brand text-light">BarberShop</Link>
+            <Link to="/" class="navbar-brand text-light"><img src="/images/barbershop_logo.png" alt="logo" /></Link>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   {opciones.map((opcion) => (
@@ -52,7 +53,7 @@ export default function Navbar() {
                 </ul>
             </div>
             <span class="navbar-text">
-              <button type="button" class="btn btn-secondary">Make Appointment</button>
+              <button type="button" class="btn btn-secondary btns">Make Appointment</button>
             </span>
         </div>
     </nav>

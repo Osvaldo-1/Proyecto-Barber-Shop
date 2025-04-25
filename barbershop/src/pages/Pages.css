@@ -1,0 +1,13 @@
+.navs {
+    background-color: #897666;
+}
+
+.btns {
+    background-color: #fcf9f5;
+    color: #222227;
+    border: none;
+}
+
+.btns:hover {
+    background-color: #9e8a78;
+}
