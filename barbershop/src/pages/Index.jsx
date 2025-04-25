@@ -1,10 +1,9 @@
-import Carousel from '../components/Carousel.jsx';
+import React from 'react';
 
-export default function Home() {
-  return (
-    <>
-      <Carousel />
-      <section id="about" className="about_section">
+
+export default function index() {
+    return(
+        <section id="about" className="about_section">
         <div className="container">
           <div className="row">
             {/* Contenido de la izquierda */}
@@ -51,8 +50,8 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </>
-    
-  )
-  
+    )
 }
+
+
+
