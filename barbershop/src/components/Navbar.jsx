@@ -3,7 +3,6 @@ import Btn from "./Btn";
 
 
 export default function Navbar() {
-
   const opciones = [
     {
       id: 0,
@@ -28,14 +27,14 @@ export default function Navbar() {
     {
       id: 4,
       nombre: "Pricing",
-      link: "pricing"
+      link: "/pricing"
     },
     {
       id: 5,
       nombre: "Contact",
-      link: "contact"
+      link: "/contact"
     }
-  ]
+  ];
 
   return (
     <nav className="navbar navbar-expand-lg navs">
@@ -56,7 +55,7 @@ export default function Navbar() {
             <span className="navbar-text">
               <Btn text="Make Appointment" classStyle="btn-color"/>
             </span>
-        </div>
+      </div>
     </nav>
-  )
+  );
 }

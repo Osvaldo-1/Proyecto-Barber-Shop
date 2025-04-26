@@ -1,6 +1,6 @@
 
 export default function Services() {
   return (
-    <div class="text-light">Services</div>
+    <div className="text-light">Services</div>
   )
 }
