@@ -22,8 +22,8 @@ export default function carousel() {
     ]
 
   return (
-    <div class="d-flex justify-content-center align-items-center my-4 w-full">
-        <section class="carousel slide w-75 mx-auto"  id="home-section" data-bs-ride="carousel">
+    <div class="d-flex justify-content-center align-items-center w-full">
+        <section class="carousel slide w-full mx-auto"  id="home-section" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 {images.map((image) => (
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to={image.id} class={image.state} aria-current="true" aria-label={`Slide ${image.id}`}></button>

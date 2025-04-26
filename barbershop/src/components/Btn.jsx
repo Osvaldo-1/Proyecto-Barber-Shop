@@ -1,6 +1,7 @@
 
 export default function Btn(props) {
+  const clas = `btn ${props.classStyle}`
   return (
-    <button type="button" class="btn btn-dark">{props.text}</button>
+    <button type="button" className={clas} >{props.text}</button>
   )
 }

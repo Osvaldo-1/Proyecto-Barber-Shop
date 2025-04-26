@@ -7,6 +7,8 @@ import reportWebVitals from './reportWebVitals';
 // En index.js o App.js
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import '../node_modules/bootstrap/dist/js/bootstrap.min'
+import './components/Components.css';
+import './pages/Pages.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -1,0 +1,22 @@
+.titles {
+    color: #897666;
+}
+
+.about_section{
+    margin-block: 2rem;
+    padding-inline: 2rem;
+}
+
+.about_section .about_img img {
+    width: 15vw;
+    border-radius: 5px;
+    box-shadow: 0 16px 28px 0 rgba(0,0,0,.2);
+}
+
+.about_section .about_img_3 {
+    margin: -145px 0 0 50px;
+}
+
+.about_section .about_img_2 {
+    margin: -100px 0 0 200px;
+}
