@@ -11,14 +11,15 @@ import Galery from './pages/Galery.jsx';
 import Contact from './pages/Contact.jsx';
 import Navbar from './components/Navbar.jsx';
 import Appointment from './pages/Appointment.jsx';
-import Header from './components/Header.jsx';
+//import Header from './components/Header.jsx';
+import Register from './pages/Register.jsx';
 
 function App() {
   return (
     <div className="App">
  
       <Navbar />
-      <Header />
+      {/* <Header /> */}
       <Routes> 
           <Route path="/" element={<HomePage />} />
           <Route path="/services" element={<Services />} />  
@@ -27,6 +28,7 @@ function App() {
           <Route path="/gallery" element={<Galery />} />  
           <Route path="/contact" element={<Contact />} />  
           <Route path="/appointment" element={<Appointment />} />
+          <Route path="/register" element={<Register />} />
       </Routes> 
     </div>
   );
