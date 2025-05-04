@@ -13,6 +13,7 @@ import Navbar from './components/Navbar.jsx';
 import Appointment from './pages/Appointment.jsx';
 import Header from './components/Header.jsx';
 
+
 function App() {
   return (
     <div className="App">
@@ -26,7 +27,7 @@ function App() {
           <Route path="/about" element={<About />} />  
           <Route path="/gallery" element={<Galery />} />  
           <Route path="/contact" element={<Contact />} />  
-          <Route path="/appointment" element={<Appointment />} />
+          <Route path="/appointment" element={<Appointment />} />"
       </Routes> 
     </div>
   );
