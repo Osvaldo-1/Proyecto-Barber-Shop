@@ -1,5 +1,6 @@
 import Carousel from '../components/Carousel.jsx';
 import About from './About.jsx';
+import Footer from './Footer.jsx';
 
 export default function Home() {
   const images = [
@@ -26,6 +27,7 @@ export default function Home() {
     <>
       <Carousel img={images} />
       <About />
+      <Footer />
     </>
   )
 }

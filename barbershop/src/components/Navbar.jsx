@@ -33,7 +33,8 @@ export default function Navbar() {
       id: 5,
       nombre: "Contact",
       link: "/contact"
-    }
+    },
+
   ];
 
   return (
@@ -53,7 +54,9 @@ export default function Navbar() {
                 </ul>
             </div>
             <span className="navbar-text">
-              <Btn text="Make Appointment" classStyle="btn-color"/>
+              <Link to="/appointment">
+              <Btn text="Make Appointment" classStyle="btn-color" />
+              </Link>
             </span>
       </div>
     </nav>
