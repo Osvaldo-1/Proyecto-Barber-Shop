@@ -1,6 +1,7 @@
 //import logo from './logo.svg';
 //import Home from './pages/Home';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import HomePage from './pages/Home.jsx';
@@ -31,7 +32,9 @@ function App() {
           <Route path="/appointment" element={<Appointment />} />
           <Route path="/register" element={<Register />} />
       </Routes> 
+
     </div>
+    
   );
 }
 
