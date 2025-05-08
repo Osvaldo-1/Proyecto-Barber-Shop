@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 export default function Galery() {
   const images = [
     { src: '/images/portfolio-1.jpg'},

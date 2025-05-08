@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../Styles/Contact.css'
 
 export default function Contact() {
 const [formData, setFormData] = useState({
@@ -31,6 +32,9 @@ const handleSubmit = (e) => {
 
 return (
   <section className="contact-section" id="contact-us">
+    <div className='containertitle'>
+    <p className='Contact'>Contactanos</p>
+    </div>
       <div className="container">
           <div className="row">
               <div className="col-lg-6 sm-padding">
