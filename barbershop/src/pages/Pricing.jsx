@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 // Asegúrate de que el CSS se importe correctamente
+import "../Styles/Pricing.css"
 
 export default function Pricing() {
   const [categories, setCategories] = useState([]);

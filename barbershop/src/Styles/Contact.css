@@ -1,11 +1,7 @@
 /* Sección general de contacto */
 .contact-section {
-    padding: 80px 0;
-    background-image: url('../assets/testimonial.jpg');
-    background-color: #f9f9f9;
-    border-top: 2px solid #eee;
-    margin-top: 60px;
     font-family: 'Segoe UI', sans-serif;
+      padding: 60px 0;
   }
   
 
@@ -57,7 +53,7 @@
     border: 1px solid #ccc;
     border-radius: 10px;
     padding: 12px 16px;
-    margin-bottom: 20px;
+    margin-bottom: 26px;
     font-size: 16px;
     box-sizing: border-box;
     transition: border 0.3s;
@@ -99,4 +95,28 @@
       transform: translateY(0);
     }
   }
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.section-heading h2 {
+  font-size: 32px;
+  font-weight: bold;
+  color: #333;
+}
+
+.heading-line {
+  width: 60px;
+  height: 3px;
+  background-color: #000;
+  margin: 10px auto 0;
+}
+
+.section-heading h3 {
+  font-size: 18px;
+  color: #888;
+  margin-bottom: 5px;
+}
   

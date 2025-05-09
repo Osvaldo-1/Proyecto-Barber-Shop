@@ -1,4 +1,4 @@
-
+import "../Styles/Carousel.css"
 export default function Carousel(props) {
     const result = [props]
     var values = []

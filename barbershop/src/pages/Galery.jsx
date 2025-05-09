@@ -1,4 +1,5 @@
 import React from 'react'
+import '../Styles/Gallery.css'
 
 
 export default function Galery() {
@@ -23,19 +24,15 @@ export default function Galery() {
       <div className="row">
         {images.map((img, index) => (
           <div className="col-lg-3 col-md-6 gallery-column mb-3 px-2 " key={index}>
-            <div style={{ height: '230px' }}>
+            <div className="gallery-img-wrapper">
               <div
                 className="gallery-img"
                 style={{
                   backgroundImage: `url('${img.src}')`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  height: '230px',
-                  width: '100%',
                 }}
               ></div>
+              </div>
             </div>
-          </div>
         ))}
       </div>
     </div>
