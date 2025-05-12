@@ -45,4 +45,6 @@ export const fetchData = async (tableName, filters = {}) => {
   }
 };
 
+
+
 // Puedes agregar aquí otras funciones para insertar, actualizar, eliminar, etc.    
