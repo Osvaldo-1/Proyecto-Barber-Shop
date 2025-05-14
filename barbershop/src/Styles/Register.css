@@ -1,0 +1,77 @@
+/* Contenedor principal que centra el formulario */
+.registro-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f4f4f4; /* Fondo gris claro */
+}
+
+/* Caja del formulario centrada */
+.registro-box {
+  background-color: #fff;
+  border: 2px solid #333;
+  border-radius: 8px;
+  padding: 20px 30px;
+  width: 100%;
+  max-width: 400px; /* Limita el ancho máximo del formulario */
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/* Título del formulario */
+.registro-box h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+/* Estilos para las etiquetas */
+.registro-box label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+/* Estilos para los inputs */
+.registro-box input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  box-sizing: border-box; /* Asegura que el padding no rompa el tamaño del input */
+}
+
+/* Estilo para el botón de submit */
+.registro-box button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.registro-box button:hover {
+  background-color: #0056b3;
+}
+
+/* Mensaje de éxito y error */
+.success, .error {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.success {
+  color: green;
+}
+
+.error {
+  color: red;
+}

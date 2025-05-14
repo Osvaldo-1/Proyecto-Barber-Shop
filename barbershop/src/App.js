@@ -1,40 +1,50 @@
-//import logo from './logo.svg';
-//import Home from './pages/Home';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './App.css';
-import { Routes, Route } from 'react-router-dom';
-import HomePage from './pages/Home.jsx';
-import Services from './pages/Services.jsx'
+import { Routes, Route, Navigate } from 'react-router-dom';
+import Home from './pages/Home.jsx';
+import Services from './pages/Services.jsx';
 import Pricing from './pages/Pricing.jsx';
 import About from './pages/About.jsx';
-import Galery from './pages/Galery.jsx';
+import Gallery from './pages/Gallery.jsx';
 import Contact from './pages/Contact.jsx';
 import Navbar from './components/Navbar.jsx';
 import Appointment from './pages/Appointment.jsx';
-//import Header from './components/Header.jsx';
 import Register from './pages/Register.jsx';
+import Login from './pages/Login.jsx';
+import { AuthProvider, useAuth } from './context/AuthContext';
+import Adminhome from './pages/Adminhome.jsx';
 
+function AppRoutes() {
+  const { user } = useAuth();
+
+  return (
+    <>
+      <Navbar />
+      <Routes>
+        <Route path="/home" element={<Home />} />
+        <Route path="/adminhome" element={<Adminhome />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/pricing" element={<Pricing />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route
+          path="/appointment"
+          element={user ? <Appointment /> : <Navigate to="/login" />}
+        />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </>
+  );
+}
 
 function App() {
   return (
-    <div className="App">
- 
-      <Navbar />
-      {/* <Header /> */}
-      <Routes> 
-          <Route path="/" element={<HomePage />} />
-          <Route path="/services" element={<Services />} />  
-          <Route path="/pricing" element={<Pricing />} />  
-          <Route path="/about" element={<About />} />  
-          <Route path="/gallery" element={<Galery />} />  
-          <Route path="/contact" element={<Contact />} />  
-          <Route path="/appointment" element={<Appointment />} />
-          <Route path="/register" element={<Register />} />
-      </Routes> 
-
-    </div>
-    
+    <AuthProvider>
+      <AppRoutes />
+    </AuthProvider>
   );
 }
 

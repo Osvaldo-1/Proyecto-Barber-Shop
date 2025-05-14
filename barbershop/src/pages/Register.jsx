@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import supabase from '../supabaseClient.js'; // Importa tu cliente de Supabase
+import { useNavigate } from 'react-router-dom';
+import supabase from '../supabaseClient.js';
+import '../Styles/Register.css'; // Importa tu cliente de Supabase
 
 function RegistroUsuario() {
   const [nombreUsuario, setNombreUsuario] = useState('');
@@ -8,31 +10,44 @@ function RegistroUsuario() {
   const [registrando, setRegistrando] = useState(false);
   const [mensajeRespuesta, setMensajeRespuesta] = useState('');
   const [error, setError] = useState(null);
-  const rol = 2
+  const navigate = useNavigate();
+  const rol = 2; // Cliente por defecto
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setRegistrando(true);
     setMensajeRespuesta('');
     setError(null);
 
-    const { data, error } = await supabase.from('usuario').insert([
+    try {
+      // 1. Crear usuario en Supabase Auth
+      const { error: authError } = await supabase.auth.signUp({
+        email,
+        password,
+      });
+
+      if (authError) throw authError;
+
+      await supabase.auth.signOut();
+
+      // 2. Insertar datos en la tabla personalizada `usuario`
+      const { error: dbError } = await supabase.from('usuario').insert([
         { nombreusuario: nombreUsuario, correousuario: email, contrasenausuario: password, rolidrol: rol }
-    ]);
+      ]);
 
-    setRegistrando(false);
+      if (dbError) throw dbError;
 
-    if (error) {
-      console.error('Error al registrar usuario:', error);
-      setError(error.message || 'Hubo un error al registrar la cuenta. Por favor, intenta de nuevo.');
-    } else {
-      console.log('Usuario registrado correctamente:', data);
-      setMensajeRespuesta('Cuenta creada exitosamente. Por favor, revisa tu correo electrónico para verificarla.');
-      setNombreUsuario('');
-      setEmail('');
-      setPassword('');
+      setRegistrando(false);
+      setMensajeRespuesta('Cuenta creada exitosamente. Por favor, inicia sesión.');
+
+      setTimeout(() => {
+        navigate('/login'); // Redirige al login
+      }, 2000); // Espera 2 segundos antes de redirigir
+    } catch (err) {
+      setRegistrando(false);
+      setError(err.message || 'Hubo un error al registrar la cuenta.');
     }
   };
-
   return (
     <form onSubmit={handleSubmit}>
       <div>

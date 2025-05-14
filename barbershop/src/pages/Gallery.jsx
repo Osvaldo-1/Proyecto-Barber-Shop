@@ -2,7 +2,7 @@ import React from 'react';
 import '../Styles/Gallery.css'
 
 
-export default function Galery() {
+export default function Gallery() {
   const images = [
     { src: '/images/portfolio-1.jpg'},
     { src: '/images/portfolio-2.jpg'},
