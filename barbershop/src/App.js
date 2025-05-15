@@ -14,6 +14,7 @@ import Register from './pages/Register.jsx';
 import Login from './pages/Login.jsx';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import Adminhome from './pages/Adminhome.jsx';
+import AdminDashboard from './pages/Adminhome.jsx';
 
 function AppRoutes() {
   const { user } = useAuth();
@@ -22,6 +23,7 @@ function AppRoutes() {
     <>
       <Navbar />
       <Routes>
+        <Route path="/admin/*" element={<AdminDashboard />} />
         <Route path="/home" element={<Home />} />
         <Route path="/adminhome" element={<Adminhome />} />
         <Route path="/services" element={<Services />} />
