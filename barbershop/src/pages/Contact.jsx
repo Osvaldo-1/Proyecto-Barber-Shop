@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../Styles/Contact.css';
+import Btn from '../components/Btn';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -118,13 +119,11 @@ export default function Contact() {
 
                   <div className="form-group row">
                     <div className="col-md-12">
-                      <button 
-                        className="default_btn"
-                        type="submit"
+                      <Btn 
+                        classStyle="btn-color" 
                         disabled={loading}
-                      >
-                        {loading ? 'Sending...' : 'Send Message'}
-                      </button>
+                        tp="submit"
+                        text={loading ? 'Sending...' : 'Send Message'} />
                     </div>
                   </div>
                 </form>

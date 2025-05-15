@@ -11,7 +11,9 @@ export default function About() {
             <img src="/images/about-logo.png" alt="about"  />
             <p>Barber is a person whose occupation is mainly to cut dress groom style and shave men's and boys' hair. A barber's place of work is known as a "barbershop" or a "barber's". Barbershops are also places of social interaction and public discourse. In some instances, barbershops are also public forums.</p>
             
-            <Link to="/" className='btn'><Btn classStyle="btn-secondary" text="More about us"/></Link>
+            <Link to="/about">
+              <Btn classStyle="btn-color" text="More about us"/>
+            </Link>
           </section>
         </div>
         <div className="col-12 col-md-6">
