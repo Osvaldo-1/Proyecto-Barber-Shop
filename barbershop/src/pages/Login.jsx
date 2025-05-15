@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext'; // Importando el contexto de autenticación
 import { useNavigate } from 'react-router-dom'; // Para la redirección
+import { Form, Row } from 'react-bootstrap';
 import  supabase  from '../supabaseClient.js'; // Importando la configuración de Supabase
+import Btn from '../components/Btn.jsx';
 
 const Login = () => {
   const { setUser } = useAuth(); // Para almacenar el usuario en el contexto
@@ -49,26 +51,38 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container">
-      <form onSubmit={handleLogin}>
+    <div className="d-flex justify-content-center align-content-center">
+      <div className='w-50'>
+        <Form onSubmit={handleLogin} className='container my-3'>
         <h2>Iniciar sesión</h2>
         {error && <div className="error-message">{error}</div>}
-        <input
-          type="email"
-          placeholder="Correo electrónico"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Contraseña"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit">Iniciar sesión</button>
-      </form>
+        <Row>
+          <Form.Group>
+            <Form.Label >Correo</Form.Label>
+            <Form.Control 
+              className='p-2'
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required />
+          </Form.Group>
+        </Row>
+        <Row>
+          <Form.Group>
+            <Form.Label>Contraseña</Form.Label>
+            <Form.Control 
+              className='p-2'
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required />
+          </Form.Group>
+        </Row>
+        <Btn tp="submit" text="Login" classStyle="btn-color"/>
+      </Form>
+      </div>
+      
+      
     </div>
   );
 };

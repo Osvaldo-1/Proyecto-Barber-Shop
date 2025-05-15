@@ -56,14 +56,16 @@ export default function Navbar() {
                 <Link to="/appointment">
                   <Btn text="Make Appointment" classStyle="btn-color" />
                 </Link>
-                <button onClick={logout} className="btn btn-outline-light btn-sm">
-                  Cerrar sesión
-                </button>
+                <Btn func={logout} text="Cerrar sesión" classStyle="btn-color"/> 
               </>
             ) : (
               <>
-                <Link to="/login" className="btn btn-outline-light btn-sm">Login</Link>
-                <Link to="/register" className="btn btn-outline-light btn-sm">Register</Link>
+                <Link to="/login" >
+                  <Btn text="Login" classStyle="btn-color"/>
+                </Link>
+                <Link to="/register">
+                  <Btn text="Register" classStyle="btn-color"/>
+                </Link>
               </>
             )}
           </span>
