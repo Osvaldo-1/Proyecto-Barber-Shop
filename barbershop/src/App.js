@@ -15,7 +15,8 @@ import Login from './pages/Login.jsx';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import Adminhome from './pages/Adminhome.jsx';
 import AdminDashboard from './pages/Adminhome.jsx';
-
+import { Comentario } from './pages/Comentario.jsx';
+import StatusCita from './pages/StatusCita.jsx';
 function AppRoutes() {
   const { user } = useAuth();
 
@@ -25,6 +26,8 @@ function AppRoutes() {
       <Routes>
         <Route path="/admin/*" element={<AdminDashboard />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/comentario" element={<Comentario />} />
+        <Route path="/status" element={user ? <StatusCita /> : <Navigate to="/login" />} />
         <Route path="/adminhome" element={<Adminhome />} />
         <Route path="/services" element={<Services />} />
         <Route path="/pricing" element={<Pricing />} />

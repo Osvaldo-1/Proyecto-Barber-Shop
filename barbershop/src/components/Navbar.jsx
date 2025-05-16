@@ -12,6 +12,8 @@ export default function Navbar() {
     { id: 3, nombre: "Gallery", link: "/gallery" },
     { id: 4, nombre: "Pricing", link: "/pricing" },
     { id: 5, nombre: "Contact", link: "/contact" },
+    { id: 6, nombre: "Comentario", link :"/comentario"},
+    { id: 7, nombre: "StatusCita", link: "/status"}
   ];
 
   return (
