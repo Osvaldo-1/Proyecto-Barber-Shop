@@ -1,23 +1,13 @@
-import { Container, Row, Col } from 'react-bootstrap';
-import Sidebar from '../components/AdminSidebar';
+import Sidebar from '../components/Sidebar';
 import { Outlet } from 'react-router-dom';
 
-function AdminLayout() {
+export default function AdminLayout() {
   return (
-    <div className="admin-dashboard">
-      <Container fluid className="app-body">
-        <Row className="h-100">
-          <Col md={2} className="text-light p-3 fixed-left navs">
-            <Sidebar />
-          </Col>
-          <Col md={10} className="p-4 content-area">
-            <Outlet />
-          </Col>
-        </Row>
-      </Container>
+    <div className="d-flex">
+      <Sidebar />
+      <main className="flex-grow-1 p-4 bg-light" style={{ minHeight: '100vh' }}>
+        <Outlet />
+      </main>
     </div>
   );
 }
-
-export default AdminLayout;
-

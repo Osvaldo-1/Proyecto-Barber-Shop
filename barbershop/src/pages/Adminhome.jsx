@@ -7,7 +7,7 @@ import ServicesManagement from '../components/AdminServicesManagement';
 import UsersManagement from '../components/AdminUsersManagement';
 import Settings from '../components/AdminSettings';
 
-function AdminDashboard() {
+function Adminhome() {
   return (
     <div className="admin-dashboard">
       <Container fluid className="app-body">
@@ -28,4 +28,4 @@ function AdminDashboard() {
   );
 }
 
-export default AdminDashboard;
+export default Adminhome;

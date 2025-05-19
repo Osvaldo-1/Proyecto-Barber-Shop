@@ -13,42 +13,47 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
+const handleLogin = async (e) => {
+  e.preventDefault();
 
-    try {
-      // Autenticación con Supabase
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
+  try {
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
 
-      if (error) throw error;
+    if (error) throw error;
 
-      // Obtener el rol del usuario desde la base de datos
-      const { data: userRoleData, error: roleError } = await supabase
-        .from('usuario')
-        .select('rolidrol')
-        .eq('correousuario', email)
-        .single();
+    // Traer el rol de la tabla usuario (campo se llama 'rolidrol')
+    const { data: userRoleData, error: roleError } = await supabase
+      .from('usuario')
+      .select('rolidrol')
+      .eq('correousuario', email)
+      .single();
 
-      if (roleError) throw roleError;
+    if (roleError) throw roleError;
 
-      // Establecer el usuario en el contexto
-      setUser(data.user);
+    console.log("Usuario autenticado (Supabase):", data.user);
+    console.log("Rol obtenido desde la base de datos:", userRoleData.rolidrol);
 
-      // Redirigir según el rol
-      if (userRoleData.rolidrol === 1) {
-        // Redirigir a la vista de admin
-        navigate('/adminhome');
-      } else {
-        // Redirigir a la vista de cliente
-        navigate('/home');
-      }
-    } catch (err) {
-      setError(err.message);
+    // Guardar usuario con rol en el contexto para poder usarlo después
+    const fullUser = {
+      ...data.user,
+      rol: userRoleData.rolidrol,  // aquí mapeas el nombre correcto
+    };
+    setUser(fullUser);
+
+    // Redirigir según rol
+    if (userRoleData.rolidrol === 1) {
+      navigate('/admin');
+    } else {
+      navigate('/home');
     }
-  };
+  } catch (err) {
+    setError(err.message);
+  }
+};
+
 
   return (
     <div className="d-flex justify-content-center align-content-center">
