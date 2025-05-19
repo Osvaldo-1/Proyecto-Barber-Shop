@@ -6,52 +6,59 @@ const AuthContext = createContext();
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
 
+  const fetchUserWithRole = async (sessionUser) => {
+    if (!sessionUser) {
+      setUser(null);
+      return;
+    }
+
+    // Asegurar que haya sesión real antes de buscar en la DB
+    const { data: sessionData } = await supabase.auth.getSession();
+    if (!sessionData.session) {
+      setUser(null);
+      return;
+    }
+
+    const { data: userRoleData, error } = await supabase
+      .from('usuario')
+      .select('rolidrol')
+      .eq('correousuario', sessionUser.email)
+      .single();
+
+    if (error) {
+      console.error('Error obteniendo rol:', error);
+      setUser(sessionUser); // Al menos guarda al usuario
+    } else {
+      setUser({ ...sessionUser, rol: userRoleData.rolidrol });
+    }
+  };
+
   useEffect(() => {
-    // Función para obtener el rol del usuario y guardar todo junto
-    const fetchUserWithRole = async (sessionUser) => {
-      if (!sessionUser) {
-        setUser(null);
-        return;
-      }
-      // Consultar la tabla usuario para obtener el rol
-      const { data: userRoleData, error } = await supabase
-        .from('usuario')
-        .select('rolidrol')
-        .eq('correousuario', sessionUser.email)
-        .single();
-
-      if (error) {
-        console.error('Error obteniendo rol:', error);
-        // Guardamos al usuario aunque sin rol para no bloquear
-        setUser(sessionUser);
-      } else {
-        // Guardamos el usuario junto con su rol
-        setUser({ ...sessionUser, rol: userRoleData.rolidrol });
-      }
-    };
-
-    // Obtener sesión inicial y obtener rol
+    // Verificar sesión al cargar
     supabase.auth.getSession().then(({ data: { session } }) => {
-      fetchUserWithRole(session?.user || null);
+      if (session?.user) fetchUserWithRole(session.user);
     });
 
-    // Escuchar cambios de sesión (login/logout)
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
-      fetchUserWithRole(session?.user || null);
+    // Escuchar cambios reales de sesión
+    const { data: listener } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === 'SIGNED_IN') {
+        supabase.auth.getSession().then(({ data }) => {
+          if (data.session) fetchUserWithRole(data.session.user);
+          else setUser(null);
+        });
+      } else if (event === 'SIGNED_OUT') {
+        setUser(null);
+      }
     });
 
     return () => {
-      if (listener?.subscription) listener.subscription.unsubscribe();
+      listener.subscription.unsubscribe();
     };
   }, []);
 
   const logout = async () => {
-    try {
-      await supabase.auth.signOut();
-      setUser(null);
-    } catch (error) {
-      console.error('Error al cerrar sesión:', error);
-    }
+    await supabase.auth.signOut();
+    setUser(null);
   };
 
   return (
