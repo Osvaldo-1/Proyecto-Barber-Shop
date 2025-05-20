@@ -1,3 +1,4 @@
+// src/context/AuthContext.js
 import { createContext, useContext, useEffect, useState } from 'react';
 import supabase from '../supabaseClient.js';
 
@@ -12,40 +13,46 @@ export function AuthProvider({ children }) {
       return;
     }
 
-    // Asegurar que haya sesión real antes de buscar en la DB
+    // Verificar sesión activa
     const { data: sessionData } = await supabase.auth.getSession();
     if (!sessionData.session) {
       setUser(null);
       return;
     }
 
+    // Obtener idusuario y rolidrol de la tabla usuario
     const { data: userRoleData, error } = await supabase
       .from('usuario')
-      .select('rolidrol')
+      .select('idusuario, rolidrol')
       .eq('correousuario', sessionUser.email)
       .single();
 
     if (error) {
-      console.error('Error obteniendo rol:', error);
-      setUser(sessionUser); // Al menos guarda al usuario
+      console.error('Error obteniendo usuario:', error);
+      setUser({
+        id: sessionUser.id,
+        email: sessionUser.email
+      });
     } else {
-      setUser({ ...sessionUser, rol: userRoleData.rolidrol });
+      setUser({
+        id: sessionUser.id,
+        email: sessionUser.email,
+        idusuario: userRoleData.idusuario,
+        rol: userRoleData.rolidrol,
+      });
     }
   };
 
   useEffect(() => {
-    // Verificar sesión al cargar
+    // Al montar, verificar sesión
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session?.user) fetchUserWithRole(session.user);
     });
 
-    // Escuchar cambios reales de sesión
+    // Listener de cambio de estado
     const { data: listener } = supabase.auth.onAuthStateChange((event, session) => {
-      if (event === 'SIGNED_IN') {
-        supabase.auth.getSession().then(({ data }) => {
-          if (data.session) fetchUserWithRole(data.session.user);
-          else setUser(null);
-        });
+      if (event === 'SIGNED_IN' && session?.user) {
+        fetchUserWithRole(session.user);
       } else if (event === 'SIGNED_OUT') {
         setUser(null);
       }
