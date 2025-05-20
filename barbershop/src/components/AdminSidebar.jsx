@@ -32,6 +32,9 @@ function Sidebar() {
         <Nav.Item>
           <Nav.Link href="#" className='text-light'><span className='status'>Configuración</span></Nav.Link>
         </Nav.Item>
+        <Nav.Item>
+          <Nav.Link href="#" className='text-light'><span className='status'>Comentarios</span></Nav.Link>
+        </Nav.Item>
         {/* Botón de Cerrar Sesión */}
         <Nav.Item className="mt-4">
           <Nav.Link onClick={handleLogout} className='text-danger'>

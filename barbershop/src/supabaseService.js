@@ -125,4 +125,37 @@ export const updateCita = (idcita, cambios) =>
 export const deleteCita = (idcita) =>
   deleteData('cita', 'idcita', idcita);
 
+export const fetchComentarios = async () => {
+  try {
+    const { data, error } = await supabase
+      .from('comentario')
+      .select(`
+        idcomentario,
+        descripcioncomentario,
+        usuarioidusuario,
+        usuarioidusuario (
+          idusuario,
+          nombreusuario
+        )
+      `);
+
+    if (error) {
+      console.error('Error fetching comentarios:', error);
+      return { error };
+    }
+    return { data };
+  } catch (error) {
+    console.error('Unexpected error fetching comentarios:', error);
+    return { error: { message: error.message } };
+  }
+};
+
+// Actualizar comentario por id
+export const updateComentario = (idcomentario, cambios) =>
+  updateData('comentario', 'idcomentario', idcomentario, cambios);
+
+// Eliminar comentario por id
+export const deleteComentario = (idcomentario) =>
+  deleteData('comentario', 'idcomentario', idcomentario);
+
 // Puedes agregar aquí otras funciones para insertar, actualizar, eliminar, etc.    

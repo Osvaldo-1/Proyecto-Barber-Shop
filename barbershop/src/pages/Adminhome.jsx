@@ -6,6 +6,7 @@ import AppointmentsList from '../components/AdminAppointmentsList';
 import ServicesManagement from '../components/AdminServicesManagement';
 import UsersManagement from '../components/AdminUsersManagement';
 import Settings from '../components/AdminSettings';
+import CommentsManagement from '../components/AdminCommentsManagement';
 
 function Adminhome() {
   return (
@@ -21,6 +22,7 @@ function Adminhome() {
             <ServicesManagement />
             <UsersManagement />
             <Settings />
+            <CommentsManagement/>
           </Col>
         </Row>
       </Container>
