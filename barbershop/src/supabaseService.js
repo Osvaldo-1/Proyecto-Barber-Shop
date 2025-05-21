@@ -158,4 +158,25 @@ export const updateComentario = (idcomentario, cambios) =>
 export const deleteComentario = (idcomentario) =>
   deleteData('comentario', 'idcomentario', idcomentario);
 
+
+// Obtener todos los artículos
+export const fetchArticulos = async () => {
+  try {
+    const { data, error } = await supabase
+      .from("articulo")
+      .select("*");
+
+    if (error) {
+      console.error("Error al obtener artículos:", error);
+      return { error };
+    }
+
+    return { data };
+  } catch (error) {
+    console.error("Error inesperado al obtener artículos:", error);
+    return { error: { message: error.message } };
+  }
+};
+
+
 // Puedes agregar aquí otras funciones para insertar, actualizar, eliminar, etc.    

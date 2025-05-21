@@ -1,57 +1,55 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { fetchArticulos } from "../supabaseService";
 import "../Styles/Service.css"
 
-export default function Services() {
+function Services() {
+  const [articulos, setArticulos] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    async function cargarArticulos() {
+      setLoading(true);
+      setError(null);
+
+      const { data, error } = await fetchArticulos();
+
+      if (error) {
+        setError("Error al cargar artículos");
+        setArticulos([]);
+      } else {
+        setArticulos(data || []);
+      }
+
+      setLoading(false);
+    }
+
+    cargarArticulos();
+  }, []);
+
+  if (loading) return <p>Cargando artículos...</p>;
+  if (error) return <p>{error}</p>;
+
   return (
-    <section className="services_section" id="services">
-      <div className="container">
-        <div className="section_heading text-center mb-5">
-          <h3>Trendy Salon & Spa</h3>
-          <h2>Our Services</h2>
-          <div
-            className="heading-line mx-auto"
-            style={{ width: "60px", height: "3px", background: "#000" }}
-          ></div>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
+      {articulos.length === 0 && <p>No hay artículos disponibles.</p>}
+      {articulos.map((art) => (
+        <div key={art.idarticulo} className="border p-4 rounded shadow">
+          <h3 className="font-bold text-lg">{art.nombrearticulo}</h3>
+          <p>{art.descripcionarticulo}</p>
+          <p>Precio: ${art.precio}</p>
+          <p>Stock: {art.stock}</p>
+          {art.imagenurl && (
+            <img
+              src={art.imagenurl}
+              alt={art.nombrearticulo}
+              className="h-32 mt-2 object-cover"
+            />
+          )}
         </div>
-
-        <div className="row g-4">
-          {/* Service 1: Haircut Styles */}
-          <div className="col-lg-3 col-md-6">
-            <div className="service_box p-4 border rounded text-center">
-              <i className="bs bs-scissors fs-1 mb-3"></i> {/* Asegúrate que el icono sea correcto */}
-              <h3>Haircut Styles</h3>
-              <p>Barber is a person whose occupation is mainly to cut dress style.</p>
-            </div>
-          </div>
-
-          {/* Service 2: Beard Trimming */}
-          <div className="col-lg-3 col-md-6">
-            <div className="service_box p-4 border rounded text-center">
-              <i className="bs bs-razor fs-1 mb-3"></i> {/* Asegúrate que el icono sea correcto */}
-              <h3>Beard Trimming</h3>
-              <p>Barber is a person whose occupation is mainly to cut dress style.</p>
-            </div>
-          </div>
-
-          {/* Service 3: Smooth Shave */}
-          <div className="col-lg-3 col-md-6">
-            <div className="service_box p-4 border rounded text-center">
-              <i className="bs bs-brush fs-1 mb-3"></i> {/* Asegúrate que el icono sea correcto */}
-              <h3>Smooth Shave</h3>
-              <p>Barber is a person whose occupation is mainly to cut dress style.</p>
-            </div>
-          </div>
-
-          {/* Service 4: Face Masking */}
-          <div className="col-lg-3 col-md-6">
-            <div className="service_box p-4 border rounded text-center">
-              <i className="bs bs-hairbrush fs-1 mb-3"></i> {/* Asegúrate que el icono sea correcto */}
-              <h3>Face Masking</h3>
-              <p>Barber is a person whose occupation is mainly to cut dress style.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+      ))}
+    </div>
   );
 }
+
+export default Services;

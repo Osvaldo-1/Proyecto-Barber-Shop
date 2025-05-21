@@ -7,6 +7,7 @@ import ServicesManagement from '../components/AdminServicesManagement';
 import UsersManagement from '../components/AdminUsersManagement';
 import Settings from '../components/AdminSettings';
 import CommentsManagement from '../components/AdminCommentsManagement';
+import AdminArticles from '../components/AdminArticles';
 
 
 function Adminhome() {
@@ -24,6 +25,7 @@ function Adminhome() {
             <UsersManagement />
             <Settings />
             <CommentsManagement/>
+            <AdminArticles />
           </Col>
         </Row>
       </Container>
