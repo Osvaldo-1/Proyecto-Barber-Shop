@@ -1,4 +1,5 @@
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import Home from './pages/Home.jsx';
 import Services from './pages/Services.jsx';
 import Pricing from './pages/Pricing.jsx';

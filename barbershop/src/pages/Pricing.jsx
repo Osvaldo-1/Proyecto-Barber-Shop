@@ -3,7 +3,7 @@ import "../Styles/Pricing.css";
 import { fetchData } from '../supabaseService.js';
 
 export default function Pricing() {
-  const [services, setServices] = useState([]); // ✅ Esto resuelve el error
+  const [services, setServices] = useState([]);
 
   useEffect(() => {
     const getServices = async () => {
@@ -14,7 +14,6 @@ export default function Pricing() {
         setServices(data);
       }
     };
-
     getServices();
   }, []);
 
@@ -40,12 +39,14 @@ export default function Pricing() {
                 )}
                 <div className="price_content">
                   <h4 className="service-name">{service.nombreservicio}</h4>
-                  <p className="service-description">{service.descripcion}</p>
                   <div className="price-details">
                     <span className="price">${service.precio}</span>
-                    <br></br>
+                    <br />
                     <span className="duration">{service.duracionminutos} min</span>
                   </div>
+                  <p className="service-description-hover">
+                    {service.descripcion}
+                  </p>
                 </div>
               </div>
             </div>

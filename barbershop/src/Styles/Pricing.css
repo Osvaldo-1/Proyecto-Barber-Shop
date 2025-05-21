@@ -65,3 +65,19 @@
 .duration {
   color: #888;
 }
+
+.service-description-hover {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.3s ease, max-height 0.3s ease;
+  font-size: 0.95rem;
+  color: #444;
+  margin-top: 15px;
+}
+
+/* Muestra la descripción cuando se pasa el mouse sobre la tarjeta */
+.price_card:hover .service-description-hover {
+  opacity: 1;
+  max-height: 200px; /* Ajusta según la longitud de tu texto */
+}

@@ -1,36 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../Styles/Contact.css';
-import Btn from '../components/Btn';
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-
-  const [loading, setLoading] = useState(false);
-  const [statusMessage, setStatusMessage] = useState('');
-
-  const handleChange = (e) => {
-    setFormData({
-        ...formData,
-        [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setStatusMessage('');
-
-    setTimeout(() => {
-        setLoading(false);
-        setStatusMessage('Your message has been sent successfully!');
-    }, 2000);
-  };
-
   return (
     <section className="contact-section" id="contact-us">
       <div className="section-heading">
@@ -41,102 +12,62 @@ export default function Contact() {
 
       <div className="container">
         <div className="row">
+          {/* Columna izquierda - Información */}
           <div className="col-lg-6 sm-padding">
             <div className="contact-info">
               <h2>
-                Get in touch with us & 
-                <br />send us a message today!
+                Mantente en contacto con nosotros
+                <br />Envíanos un mensaje, ¡si tienes alguna duda!
               </h2>
               <p>
-                Saasbiz is a different kind of architecture practice. Founded by LoganCee in 1991, we’re an employee-owned firm pursuing a democratic design process that values everyone’s input.
+                En Rock Barber, tu estilo es nuestra prioridad. Nos apasiona ofrecer experiencias únicas a cada cliente, por eso estamos siempre disponibles para atender tus dudas, agendar tu próxima cita o simplemente ayudarte a encontrar el corte que mejor se adapta a ti.
               </p>
               <h3>
-                198 West 21th Street, Suite 721 
+                Av Alfonso Reyes 423, Los Soles, 66610 Cdad. Apodaca, N.L. 
                 <br />
                 New York, NY 10010
               </h3>
               <h4>
-                <span>Email:</span> Dynamiclayers.Net <br /> 
-                <span>Phone:</span> +88 (0) 101 0000 000 <br /> 
-                <span>Fax:</span> +88 (0) 202 0000 001
+                <span>Email:</span> barberclub@gmail.com <br /> 
+                <span>Phone:</span> +52 81 1596 8874 <br /> 
               </h4>
+
+              {/* WhatsApp */}
+              <span style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '8px' }}>
+                <i className="bi bi-whatsapp" style={{ color: '#25D366', fontSize: '1.4rem' }}></i>
+                <a
+                  href="https://wa.me/528115968874"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ textDecoration: 'none', color: 'inherit' }}
+                >
+                  WhatsApp
+                </a>
+              </span>
+
+              {/* Facebook */}
+              <span style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '8px' }}>
+                <i className="bi bi-facebook" style={{ color: '#3b5998', fontSize: '1.4rem' }}></i>
+                <a
+                  href="https://www.facebook.com/rockbarberclubnl?mibextid=JRoKGi"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ textDecoration: 'none', color: 'inherit' }}
+                >
+                  Facebook
+                </a>
+              </span>
             </div>
           </div>
 
+          {/* Columna derecha - Imagen */}
           <div className="col-lg-6 sm-padding">
-            <div className="contact-form">
-              <div className="contactForm">
-                <form onSubmit={handleSubmit}>
-                  <div className="form-group colum-row row">
-                    <div className="col-sm-6">
-                      <input 
-                        type="text"
-                        name="name"
-                        className="form-control"
-                        placeholder="Name"
-                        value={formData.name}
-                        onChange={handleChange}
-                      />
-                    </div>
-                    <div className="col-sm-6">
-                      <input 
-                        type="email"
-                        name="email"
-                        className="form-control"
-                        placeholder="Email"
-                        value={formData.email}
-                        onChange={handleChange}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="form-group row">
-                    <div className="col-md-12">
-                      <input 
-                        type="text"
-                        name="subject"
-                        className="form-control"
-                        placeholder="Subject"
-                        value={formData.subject}
-                        onChange={handleChange}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="form-group row">
-                    <div className="col-md-12">
-                      <textarea 
-                        name="message"
-                        cols="30"
-                        rows="5"
-                        className="form-control message"
-                        placeholder="Message"
-                        value={formData.message}
-                        onChange={handleChange}
-                      ></textarea>
-                    </div>
-                  </div>
-
-                  <div className="form-group row">
-                    <div className="col-md-12">
-                      <Btn 
-                        classStyle="btn-color" 
-                        disabled={loading}
-                        tp="submit"
-                        text={loading ? 'Sending...' : 'Send Message'} />
-                    </div>
-                  </div>
-                </form>
-                {loading && (
-                  <img
-                    src="/images/ajax_loader_gif.gif"
-                    alt="Loading..."
-                    id="contact_ajax_loader"
-                    style={{ display: 'block', margin: '0 auto' }}
-                  />
-                )}
-                {statusMessage && <div id="contact_status_message">{statusMessage}</div>}
-              </div>
+            <div className="contact-image-box">
+              <img
+                src="https://images.fresha.com/lead-images/placeholders/barbershop-88.jpg?class=width-small"
+                alt="Rock Barber"
+                className="contact-image"
+              />
             </div>
           </div>
         </div>
