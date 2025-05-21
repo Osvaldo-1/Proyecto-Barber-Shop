@@ -9,9 +9,9 @@ export default function Footer() {
           {/* Logo y descripción */}
           <div className="col-lg-3 col-md-6">
             <div className="footer_widget">
-              <h4 className="mb-3">About Us</h4>
+              <h4 className="mb-3">Acerca de nosotros</h4>
               <p>
-                Our barbershop is created for men who appreciate premium quality, time, and a flawless look.
+                Nuestra baerberia es creada para aquellos que buscan calidad, estilo , y frescura.
               </p>
               <ul className="list-inline mt-3">
                 <li className="list-inline-item me-3">
@@ -36,11 +36,10 @@ export default function Footer() {
           {/* Dirección */}
           <div className="col-lg-3 col-md-6">
             <div className="footer_widget">
-              <h4 className="mb-3">Headquarters</h4>
-              <p>962 Fifth Avenue, 3rd Floor<br />New York, NY10022</p>
-              <p>
-                contact@barbershop.com<br />
-                (+123) 456 789 101
+              <h4 className="mb-3">Dirección</h4>
+              <p>Av Alfonso Reyes 423, Los Soles, 66610 Cdad. Apodaca, N.L.</p>
+              <p> barberclub@gmail.com<br />
+                (+52) 81 1596 8874
               </p>
             </div>
           </div>
@@ -48,34 +47,17 @@ export default function Footer() {
           {/* Horarios */}
           <div className="col-lg-3 col-md-6">
             <div className="footer_widget">
-              <h4 className="mb-3">Opening Hours</h4>
+              <h4 className="mb-3">Horario</h4>
               <ul className="list-unstyled">
-                <li>Mon - Fri: 11:30am - 8:00pm</li>
-                <li>Saturday: 10:00am - 6:00pm</li>
-                <li>Sunday: Closed</li>
+                <li>Lun - Vie: 12:30am - 8:00pm</li>
+                <li>Sabados: 10:00am - 6:00pm</li>
+                <li>Domingos: Closed</li>
               </ul>
             </div>
           </div>
 
           {/* Suscripción */}
-          <div className="col-lg-3 col-md-6">
-            <div className="footer_widget">
-              <h4 className="mb-3">Subscribe</h4>
-              <form onSubmit={(e) => e.preventDefault()}>
-                <div className="mb-3">
-                  <input
-                    type="email"
-                    name="EMAIL"
-                    id="subs-email"
-                    className="form-control"
-                    placeholder="Email Address..."
-                    required
-                  />
-                </div>
-                <button type="submit" className="btn btn-outline-light w-100">SUBSCRIBE</button>
-              </form>
-            </div>
-          </div>
+
         </div>
 
         <hr className="bg-secondary my-4" />

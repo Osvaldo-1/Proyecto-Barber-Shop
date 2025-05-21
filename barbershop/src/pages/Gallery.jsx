@@ -16,8 +16,8 @@ export default function Gallery() {
   return (
     <section className="gallery-section" id="gallery">
     <div className="section_heading">
-      <h3>Trendy Salon & Spa</h3>
-      <h2>Barbers Gallery</h2>
+      <h3>Rock Barber</h3>
+      <h2>Galeria de fotos</h2>
       <div className="heading-line"></div>
     </div>
     <div className="container">

@@ -64,6 +64,7 @@ export function Comentario() {
 
   return (
     <div className="comentarios-container">
+      <h3 className='comen2'>Sube un comentario!!!</h3>
       <h2 className='comen'>Comentarios de Clientes</h2>
 
       {user ? (

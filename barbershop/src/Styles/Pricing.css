@@ -1,6 +1,19 @@
 .pricing_section{
       padding: 60px 0;
-}
+      animation: fadeIn 1s ease-in;
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
 
 .price_card {
   background-color: #fff;

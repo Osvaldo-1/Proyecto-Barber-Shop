@@ -22,8 +22,8 @@ export default function Pricing() {
     <section className="pricing_section" id="pricing">
       <div className="container">
         <div className="section_heading">
-          <h3 className="subtitle">Save 20% On Beauty Spa</h3>
-          <h2 className="title">Our Barber Pricing</h2>
+          <h3 className="subtitle">Precios</h3>
+          <h2 className="title">Cortes que ofrecemos</h2>
           <div className="heading-line"></div>
         </div>
 
