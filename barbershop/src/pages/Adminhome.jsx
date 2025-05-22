@@ -5,7 +5,6 @@ import DashboardOverview from '../components/AdminDashboardOverview';
 import AppointmentsList from '../components/AdminAppointmentsList';
 import ServicesManagement from '../components/AdminServicesManagement';
 import UsersManagement from '../components/AdminUsersManagement';
-import Settings from '../components/AdminSettings';
 import CommentsManagement from '../components/AdminCommentsManagement';
 import AdminArticles from '../components/AdminArticles';
 
@@ -23,7 +22,6 @@ function Adminhome() {
             <AppointmentsList />
             <ServicesManagement />
             <UsersManagement />
-            <Settings />
             <CommentsManagement/>
             <AdminArticles />
           </Col>
