@@ -8,26 +8,50 @@ function Appointment() {
   const [servicioSeleccionado, setServicioSeleccionado] = useState(null);
   const [fecha, setFecha] = useState('');
   const [hora, setHora] = useState('');
+  const [horasOcupadas, setHorasOcupadas] = useState([]);
   const [confirmar, setConfirmar] = useState(false);
   const [error, setError] = useState('');
   const [exito, setExito] = useState('');
 
-  // Carga servicios al montar
+  // Cargar servicios al montar
   useEffect(() => {
     supabase
       .from('servicio')
       .select('*')
       .then(({ data, error }) => {
-        if (error) {
-          console.error(error);
-          setError('Error cargando servicios');
-        } else {
-          setServicios(data);
-        }
+        if (error) setError('Error cargando servicios');
+        else setServicios(data);
       });
   }, []);
 
-  // Función para insertar la cita
+  // Al cambiar la fecha, obtener horarios ocupados
+  useEffect(() => {
+    if (fecha) {
+      supabase
+        .from('cita')
+        .select('horacita')
+        .eq('fechacita', fecha)
+        .then(({ data, error }) => {
+          if (!error && data) {
+            const ocupadas = data.map(item => item.horacita.slice(0, 5));
+            setHorasOcupadas(ocupadas);
+          }
+        });
+    } else {
+      setHorasOcupadas([]);
+    }
+  }, [fecha]);
+
+  // Horas disponibles: 12:00 a 20:30 (en intervalos de 30 mins)
+  const generarHoras = () => {
+    const horas = [];
+    for (let h = 12; h <= 20; h++) {
+      horas.push(`${h.toString().padStart(2, '0')}:00`);
+      if (h !== 20) horas.push(`${h.toString().padStart(2, '0')}:30`);
+    }
+    return horas;
+  };
+
   const agendarCita = async () => {
     if (!fecha || !hora || !servicioSeleccionado) {
       setError('Por favor completa todos los campos.');
@@ -38,7 +62,7 @@ function Appointment() {
       fechacita: fecha,
       horacita: hora,
       usuarioidusuario: user.idusuario,
-      estadoidestado: 1, // pendiente
+      estadoidestado: 1,
       servicioidservicio: servicioSeleccionado.idservicio,
     };
 
@@ -47,7 +71,6 @@ function Appointment() {
       .insert([citaNueva]);
 
     if (insertError) {
-      console.error(insertError);
       setError('Error creando cita');
       setExito('');
     } else {
@@ -59,6 +82,8 @@ function Appointment() {
       setServicioSeleccionado(null);
     }
   };
+
+  const hoy = new Date().toISOString().split('T')[0];
 
   return (
     <div>
@@ -95,15 +120,32 @@ function Appointment() {
       <input
         type="date"
         value={fecha}
-        onChange={e => { setFecha(e.target.value); setError(''); setExito(''); }}
+        min={hoy}
+        onChange={e => {
+          setFecha(e.target.value);
+          setHora('');
+          setError('');
+          setExito('');
+        }}
       />
 
       <label>Hora:</label>
-      <input
-        type="time"
+      <select
         value={hora}
-        onChange={e => { setHora(e.target.value); setError(''); setExito(''); }}
-      />
+        onChange={e => {
+          setHora(e.target.value);
+          setError('');
+          setExito('');
+        }}
+        disabled={!fecha}
+      >
+        <option value="">-- selecciona una hora --</option>
+        {generarHoras().map(h => (
+          <option key={h} value={h} disabled={horasOcupadas.includes(h)}>
+            {h} {horasOcupadas.includes(h) ? ' (no disponible)' : ''}
+          </option>
+        ))}
+      </select>
 
       {!confirmar ? (
         <button
@@ -113,7 +155,8 @@ function Appointment() {
               return;
             }
             setConfirmar(true);
-            setError(''); setExito('');
+            setError('');
+            setExito('');
           }}
         >
           Confirmar datos

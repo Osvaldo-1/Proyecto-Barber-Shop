@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import supabase from '../supabaseClient.js';
 import { useAuth } from '../context/AuthContext';
+import "../Styles/Status.css";
 
 function StatusCita() {
   const { user } = useAuth();
@@ -38,17 +39,41 @@ function StatusCita() {
     cargarCita();
   }, [user]);
 
-  if (loading) return <p>Cargando cita…</p>;
-  if (error)   return <p style={{ color: 'red' }}>{error}</p>;
-  if (!cita)   return <p>No tienes citas programadas.</p>;
+const getEstadoClase = (estado) => {
+  const limpio = (estado || '').trim().toLowerCase();
+
+  switch (limpio) {
+    case 'en espera':
+      return 'estado-espera';
+    case 'aceptado':
+      return 'estado-aceptado';
+    case 'rechazado':
+      return 'estado-rechazado';
+    case 'reagendado':
+      return 'estado-reagendado';
+    default:
+      return 'estado-desconocido';
+  }
+};
+
+  if (loading) return <p className="mensaje">Cargando cita…</p>;
+  if (error) return <p className="error">{error}</p>;
+  if (!cita) return <p className="mensaje">No tienes citas programadas.</p>;
 
   return (
-    <div>
-      <h2>Estado de tu cita</h2>
-      <p><strong>Servicio:</strong> {cita.servicioidservicio?.nombreservicio}</p>
-      <p><strong>Fecha:</strong> {cita.fechacita}</p>
-      <p><strong>Hora:</strong> {cita.horacita}</p>
-      <p><strong>Estado:</strong> {cita.estadoidestado?.detalle}</p>
+    <div className="cita-container">
+      <div className="cita-card">
+        <h2>Estado de tu cita</h2>
+        <p><strong>Servicio:</strong> {cita.servicioidservicio?.nombreservicio}</p>
+        <p><strong>Fecha:</strong> {cita.fechacita}</p>
+        <p><strong>Hora:</strong> {cita.horacita}</p>
+        <p>
+          <strong>Estado:</strong>{' '}
+          <span className={`estado ${getEstadoClase(cita.estadoidestado?.detalle)}`}>
+            {cita.estadoidestado?.detalle}
+          </span>
+        </p>
+      </div>
     </div>
   );
 }
