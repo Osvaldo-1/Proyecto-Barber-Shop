@@ -1,3 +1,4 @@
+// src/pages/RegistroUsuario.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form, Row, Col } from 'react-bootstrap';
@@ -6,20 +7,18 @@ import supabase from '../supabaseClient.js';
 import { useAuth } from "../context/AuthContext";
 import '../Styles/Register.css';
 
-//–––  Expresiones regulares y constantes de validación ––––––––––––––––––
-const emailRegex   = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;                       // formato e-mail simple
-const nameRegex = /^[A-Za-z0-9._-]{1,30}$/; // Letras, números, punto, guion y guion bajo (1-50)
-const passRegex    = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*?]{8,}$/;  // ≥8, letras y números (signos opcionales)
-const MAX_LENGTH   = 50;
-//––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const nameRegex = /^[A-Za-z0-9._-]{1,30}$/;
+const passRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*?]{8,}$/;
+const MAX_LENGTH = 50;
 
 function RegistroUsuario() {
-  const { user } = useAuth();
+  const { user, setIgnoreAuthChange } = useAuth(); // << CORREGIDO
   const [nombreUsuario, setNombreUsuario] = useState('');
-  const [email,         setEmail]         = useState('');
-  const [password,      setPassword]      = useState('');
-  const [rol,           setRol]           = useState('2');
-  const [registrando,   setRegistrando]   = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [rol, setRol] = useState('2');
+  const [registrando, setRegistrando] = useState(false);
   const [mensajeRespuesta, setMensajeRespuesta] = useState('');
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -32,7 +31,6 @@ function RegistroUsuario() {
     setMensajeRespuesta('');
     setError(null);
 
-    //––– 1. Validación de datos en cliente ––––––––––––––––––––––
     if (!nameRegex.test(nombreUsuario)) {
       setError('El nombre solo puede contener letras y espacios (máx. 50 caracteres).');
       setRegistrando(false); return;
@@ -45,20 +43,22 @@ function RegistroUsuario() {
       setError('La contraseña debe tener mínimo 8 caracteres e incluir letras y números.');
       setRegistrando(false); return;
     }
-    //–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 
     try {
-      // 2. Crear usuario en Supabase Auth
-      const { error: authError } = await supabase.auth.signUp({ email, password });
+      setIgnoreAuthChange(true); // << PREVIENE login automático
+
+      const { error: authError } = await supabase.auth.signUp({
+        email,
+        password,
+      });
       if (authError) throw authError;
 
-      // 3. Cerrar sesión para evitar que entre directo
       await supabase.auth.signOut();
+      await supabase.auth.setSession({ access_token: null, refresh_token: null });
 
-      // 4. Insertar datos en la tabla personalizada `usuario`
       const { error: dbError } = await supabase
         .from('usuario')
-        .insert([{ 
+        .insert([{
           nombreusuario: nombreUsuario,
           correousuario: email,
           contrasenausuario: password,
@@ -67,9 +67,14 @@ function RegistroUsuario() {
       if (dbError) throw dbError;
 
       setRegistrando(false);
-      setMensajeRespuesta('Cuenta creada exitosamente. Por favor, inicia sesión.');
-      setTimeout(() => navigate('/login'), 2000);
+      setMensajeRespuesta('Cuenta creada exitosamente. Ahora inicia sesión.');
+
+      setTimeout(() => {
+        setIgnoreAuthChange(false); // << REACTIVA listener
+        navigate('/login');
+      }, 2500);
     } catch (err) {
+      setIgnoreAuthChange(false); // << EN CASO DE ERROR
       setRegistrando(false);
       setError(err.message || 'Hubo un error al registrar la cuenta.');
     }
@@ -88,7 +93,7 @@ function RegistroUsuario() {
           value={nombreUsuario}
           onChange={(e) => setNombreUsuario(e.target.value)}
           maxLength={MAX_LENGTH}
-          pattern={nameRegex.source}      // validación HTML extra
+          pattern={nameRegex.source}
           required
         />
       </Form.Group>
@@ -119,7 +124,6 @@ function RegistroUsuario() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              // placeholder para guiar al usuario
               placeholder="Mín. 8 caracteres, letras y números"
             />
           </Form.Group>
