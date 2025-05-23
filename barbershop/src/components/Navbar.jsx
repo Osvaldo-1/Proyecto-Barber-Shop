@@ -7,7 +7,7 @@ export default function Navbar() {
 
   const opciones = [
     { id: 0, nombre: "Home", link: "/home" },
-    { id: 2, nombre: "Services", link: "/services" },
+    { id: 2, nombre: "Articulos de venta", link: "/Articulos de venta" },
     { id: 3, nombre: "Gallery", link: "/gallery" },
     { id: 4, nombre: "Pricing", link: "/pricing" },
     { id: 5, nombre: "Contact", link: "/contact" },

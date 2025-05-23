@@ -34,7 +34,7 @@ function AppRoutes() {
         <Route path="/home" element={<Home />} />
         <Route path="/comentario" element={<Comentario />} />
         <Route path="/status" element={user ? <StatusCita /> : <Navigate to="/login" />} />
-        <Route path="/services" element={<Services />} />
+        <Route path="/Articulos de venta" element={<Services />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/about" element={<About />} />
         <Route path="/gallery" element={<Gallery />} />

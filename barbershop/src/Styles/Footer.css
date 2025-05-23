@@ -78,3 +78,8 @@ hr {
 .text-center {
   text-align: center;
 }
+
+/* Se eliminan los estilos conflictivos que forzaban columna */
+.widget_section .container {
+  display: block;
+}

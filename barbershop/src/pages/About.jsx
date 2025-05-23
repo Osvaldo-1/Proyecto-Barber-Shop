@@ -1,32 +1,57 @@
-import { Link } from 'react-router-dom'
-import Btn from '../components/Btn'
+import React from 'react';
+import '../Styles/About.css';
 
 export default function About() {
   return (
-    <div className="text-center about_section">
-      <div className="row">
-        <div className="col-12 col-md-6">
-          <section className="">
-            <h2 className="titles">The Barber Shop <br />Since 1991</h2>
-            <img src="/images/about-logo.png" alt="about"  />
-            <p>Barber is a person whose occupation is mainly to cut dress groom style and shave men's and boys' hair. A barber's place of work is known as a "barbershop" or a "barber's". Barbershops are also places of social interaction and public discourse. In some instances, barbershops are also public forums.</p>
-            
-            <Link to="/about">
-              <Btn classStyle="btn-color" text="More about us"/>
-            </Link>
-          </section>
+    <div className="about-container">
+      <h2 className="about-title">Nuestros Servicios</h2>
+      <p className="about-description">
+        Bienvenido a una experiencia de cuidado personal como ninguna otra. Los servicios que ofrecemos van más allá de lo
+        común, adoptando la herencia de la barbería clásica e incorporando técnicas de vanguardia.
+      </p>
+      <div className="about-content">
+        <div className="about-image">
+          <img src="https://images.fresha.com/lead-images/placeholders/barbershop-101.jpg?class=width-small" alt="Barber Service" />
         </div>
-        <div className="col-12 col-md-6">
-          <div className="col-md-6 d-none d-md-block">
-            { <div className="about_img">
-              <img className="about_img_1" src="/images/about-1.jpg" alt="about-1" />
-              <img className="about_img_2" src="/images/about-2.jpg" alt="about-2" />
-              <img className="about_img_3" src="/images/about-3.jpg" alt="about-3" />
-            </div> }
-            <p></p>
+        <div className="about-services">
+          <div className="service-card">
+            <div className="icon-box">🪒</div>
+            <div>
+              <h3>ACCESORIOS</h3>
+              <p>
+                Encuentra los mejores productos y herramientas para el cuidado masculino, seleccionados con calidad premium.
+              </p>
+            </div>
+          </div>
+          <div className="service-card">
+            <div className="icon-box">🧖</div>
+            <div>
+              <h3>ROSTRO</h3>
+              <p>
+                Tratamientos faciales personalizados para revitalizar tu piel y resaltar tu mejor versión.
+              </p>
+            </div>
+          </div>
+          <div className="service-card">
+            <div className="icon-box">✂️</div>
+            <div>
+              <h3>AFEITADO</h3>
+              <p>
+                Afeitado clásico con toalla caliente, precisión y confort garantizados.
+              </p>
+            </div>
+          </div>
+          <div className="service-card">
+            <div className="icon-box">💇</div>
+            <div>
+              <h3>CABELLO</h3>
+              <p>
+                Cortes modernos y tradicionales adaptados a tu estilo, con asesoría profesional.
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
