@@ -125,7 +125,7 @@ export default function AdminArticles() {
 
   return (
     <div>
-      <h2>Gestión de Artículos</h2>
+      <h2 id="Articulos">Gestión de Artículos</h2>
       <Button variant="success" className="mb-3" onClick={handleCreate}>
         Añadir Nuevo Artículo
       </Button>

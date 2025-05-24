@@ -39,7 +39,7 @@ function CommentsManagement() {
 
   return (
     <div>
-      <h2>Gestión de Comentarios</h2>
+      <h2 id='Comentarios'>Gestión de Comentarios</h2>
       <Table striped bordered hover responsive>
         <thead>
           <tr>

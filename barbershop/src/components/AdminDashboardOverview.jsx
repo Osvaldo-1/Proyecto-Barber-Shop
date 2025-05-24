@@ -3,7 +3,7 @@ import { Row, Col, Card } from 'react-bootstrap';
 function DashboardOverview() {
   return (
     <div>
-      <h2>Barber Shop Dashboard</h2>
+      <h2 id="Resumen">Barber Shop Dashboard</h2>
       <Row className="mb-4">
         <Col md={4}>
           <Card className="shadow-sm">

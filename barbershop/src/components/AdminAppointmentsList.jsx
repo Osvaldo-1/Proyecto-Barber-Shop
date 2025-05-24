@@ -111,7 +111,7 @@ export default function AppointmentsList() {
 
   return (
     <div>
-      <h2>Lista de Citas</h2>
+      <h2 id='Citas'>Lista de Citas</h2>
       <Button variant="success" size="sm" onClick={handleCreate}>
         Crear Nueva Cita
       </Button>

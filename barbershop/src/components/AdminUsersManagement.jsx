@@ -49,7 +49,7 @@ const handleEliminar = async (id) => {
 
   return (
     <div>
-      <h2>Gestión de Usuarios</h2>
+      <h2 id='Usuarios'>Gestión de Usuarios</h2>
       <Table striped bordered hover responsive>
         <thead>
           <tr>

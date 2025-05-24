@@ -12,7 +12,7 @@ export default function Navbar() {
     { id: 4, nombre: "Pricing", link: "/pricing" },
     { id: 5, nombre: "Contact", link: "/contact" },
     { id: 6, nombre: "Comentario", link :"/comentario"},
-    { id: 7, nombre: "StatusCita", link: "/status"}
+    //{ id: 7, nombre: "StatusCita", link: "/status"}
   ];
 
   return (
@@ -54,6 +54,9 @@ export default function Navbar() {
             {/* Mostrar botón de cita si está logueado */}
             {user ? (
               <>
+                  <Link to="/status" className="nav-link active text-light">
+                    <span className="status">Estatus de la cita</span>
+                  </Link>
                 <Link to="/appointment">
                   <Btn text="Make Appointment" classStyle="btn-color" />
                 </Link>
